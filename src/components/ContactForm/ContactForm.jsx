@@ -14,11 +14,11 @@ function ContactForm() {
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
-    number: Yup.number().positive().integer().required("Required"),
+    number: Yup.string().required("Required"),
   });
   const dispatch = useDispatch();
-  const handleSubmit = ({ number, name }, actions) => {
-    dispatch(addContact(name, number));
+  const handleSubmit = ({ name, number }, actions) => {
+    dispatch(addContact({ name, number }));
     actions.resetForm();
   };
 
