@@ -3,6 +3,9 @@ import css from "./App.module.css";
 import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
 import ContactForm from "../ContactForm/ContactForm";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectError, selectIsLoading } from "../../redux/contactsSlice";
 import { useEffect } from "react";
@@ -23,8 +26,8 @@ function App() {
       <hr />
       <SearchBox />
       <hr />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ContactList />
+      {isLoading && !error && <Loader />}
+      {error ? <ErrorMessage text={error} /> : <ContactList />}
     </div>
   );
 }
